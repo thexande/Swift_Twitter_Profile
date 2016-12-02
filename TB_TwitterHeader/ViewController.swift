@@ -27,20 +27,20 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         scrollView.delegate = self
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         // Header - Image
         
         headerImageView = UIImageView(frame: header.bounds)
         headerImageView?.image = UIImage(named: "header_bg")
-        headerImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
         header.insertSubview(headerImageView, belowSubview: headerLabel)
         
         // Header - Blurred Image
         
         headerBlurImageView = UIImageView(frame: header.bounds)
-        headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImageWithRadius(10, iterations: 20, tintColor: UIColor.clearColor())
-        headerBlurImageView?.contentMode = UIViewContentMode.ScaleAspectFill
+        headerBlurImageView?.image = UIImage(named: "header_bg")?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        headerBlurImageView?.contentMode = UIViewContentMode.scaleAspectFill
         headerBlurImageView?.alpha = 0.0
         header.insertSubview(headerBlurImageView, belowSubview: headerLabel)
     
@@ -51,7 +51,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         super.didReceiveMemoryWarning()
     }
     
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         let offset = scrollView.contentOffset.y
         var avatarTransform = CATransform3DIdentity
@@ -114,8 +114,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     @IBAction func shamelessActionThatBringsYouToMyTwitterProfile() {
         
-        if !UIApplication.sharedApplication().openURL(NSURL(string:"twitter://user?screen_name=bitwaker")!){
-            UIApplication.sharedApplication().openURL(NSURL(string:"https://twitter.com/bitwaker")!)
+        if !UIApplication.shared.openURL(URL(string:"twitter://user?screen_name=bitwaker")!){
+            UIApplication.shared.openURL(URL(string:"https://twitter.com/bitwaker")!)
         }
     }
 }
